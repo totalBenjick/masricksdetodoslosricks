@@ -3,6 +3,9 @@ import CardChar from '../../p01_components/CardChar';
 import Layout from '../../p01_components/Layout';
 import { useQuery, gql } from '@apollo/client';
 import Loading from '../../p01_components/Loading';
+import Router, { useRouter } from 'next/router';
+import Error from './../../p01_components/Error'
+
 
 
 export default function Character({props}) {
@@ -28,18 +31,17 @@ export default function Character({props}) {
         }
     `;
 
+    const router = useRouter();
+    const { query: { cid } } = router;
+
     const { loading, error, data } = useQuery(QUERY_ONE_CHAR, {
         variables:{
-            id: 4
+            id: cid
         }
     });
 
-    if( error) {
-        return <div>hubo error</div>
-    }
-    if(loading) {
-        return( <Loading/>)
-    }
+    if( error ) { return <Error/>}
+    if(loading) { return( <Loading/>) }
     
     return (
         <Layout>

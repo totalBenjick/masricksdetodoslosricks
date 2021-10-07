@@ -6,12 +6,6 @@ import Router from 'next/router';
 
 
 export default function BlueBtn( props ) {
-    // const editarCliente = () => {
-    //     Router.push({
-    //         pathname: "/editarcliente/[id]",
-    //         query: { id }
-    //     })
-    // }
     let id = props.location;
 
     const goToLocation = () => {

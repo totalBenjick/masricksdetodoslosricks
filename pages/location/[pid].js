@@ -2,8 +2,8 @@ import React from 'react';
 import Layout from '../../p01_components/Layout';
 import Loading from '../../p01_components/Loading';
 import { useQuery, gql } from '@apollo/client';
-import { useRouter } from 'next/router'
-
+import Router, { useRouter } from 'next/router';
+import Error from '../../p01_components/Error';
 
 
 export default function Location() {
@@ -34,20 +34,23 @@ export default function Location() {
             id: pid
         }
     })
-
+    if( error ) return <Error/>
     if(loading )  return <Loading />
 
     const { location: { name, residents } } = data;
-    console.log(data, 'data')
-    //console.log(name, residents.map(e => {e.name, e.id}), 'nameee')
 
+    const changeToCharacterById = ( cid ) => {
+        Router.push({
+            pathname: `/character/${cid}`,
+        })
+    }
 
     return (
         <Layout>
             <div className="flex h-screen justify-center">
                 <div style={{ height: "90%", width: "80%" }}
                     className=" bg-blue-600 pt-1 px-2 bg-gradient-to-b from-blue-400 
-                    to-blue-500 rounded-xl shadow-lg w-52 flex items-center"
+                        to-blue-500 rounded-xl shadow-lg w-52 flex items-center"
                     >
                     <div className="p-4 flex justify-start  flex-col"
                         style={{
@@ -73,9 +76,8 @@ export default function Location() {
                             }}
                         >
                             { residents.map((resident, i ) => (
-                                <p style={{
-                                        color: "white"
-                                    }}
+                                <p style={{ color: "white" }}
+                                    onClick={() => changeToCharacterById(resident.id)}
                                     key={i}className="text-white  text-xl ml-3
                                         flex items-center px-4 py-2 space-x-3 text-gray-600 
                                         transition-colors duration-200 transform border rounded-lg 
@@ -83,7 +85,8 @@ export default function Location() {
                                         focus:ring-opacity-40 dark:text-gray-200 dark:border-gray-200 
                                         hover:bg-black dark:hover:bg-black focus:outline-none
                                         my-2
-                                    " >{resident.name}</p>
+                                    " >{resident.name}
+                                </p>
                             ))}
                         </div>
                         

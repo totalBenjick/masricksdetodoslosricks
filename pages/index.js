@@ -1,11 +1,7 @@
-import { useRouter } from 'next/router'; 
 import Card from  '../p01_components/Card';
 import Layout from  './../p01_components/Layout'
 
 export default function Home() {
-
-  const router = useRouter();
-
   const setRoute = (route) => {
 
   }

@@ -10,14 +10,19 @@ export default function Layout({children}) {
               <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
           </Head>
           <div style={{height: "100%"}}
-            className={`bg-gradient-to-r from-blue-300 to-blue-500  h-full text-white`} >
+            className={`bg-gradient-to-r from-blue-300 to-blue-500  h-full w-screen text-white`} >
             <div className="flex justify-center items-center text-2xl ">
-                Rick and Morty Ui
+                <img src={ "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Rick_and_Morty.svg/800px-Rick_and_Morty.svg.png" } 
+                    alt={ 'rick and morty svg' } 
+                    style={{width: "auto", marginTop: "20px", border: "1px solid black", borderRadius: "10px"
+                        , backgroundColor: "black", paddingLeft: "25px", paddingRight: "25px", maxHeight: "120px", maxWidth:"80%"
+                    }}
+                />
             </div>      
-             <div className="flex-col h-full justify-center">
+             <div className="flex-col h-full justify-center mt-5">
              {children}
              </div>
-
+            <div className="block rounded-md text-white font-extrabold text-center bg-light-blue-500 p-6"> Benjamin Lezama 2021 </div>
           </div>
         </>
   )

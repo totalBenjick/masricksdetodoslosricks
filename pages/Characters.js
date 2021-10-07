@@ -4,14 +4,20 @@ import Loading from '../p01_components/Loading';
 import Pagination from '../p01_components/Pagination';
 import CardChar from '../p01_components/CardChar';
 import { useQuery, gql } from '@apollo/client';
+import Error from '../p01_components/Error';
 
 
 export default function Characters() {
+    const [ xid, setId ] = React.useState(1);
+
     const QUERY_CHARACTERS = gql`
         query characters($page: Int){
             characters(page: $page) {
                 info {
-                count        
+                    count,
+                    pages,
+                    next,
+                    prev    
                 }
                 results {
                     location{
@@ -38,26 +44,27 @@ export default function Characters() {
     `;
     
 
-    const { loading, error, data} = useQuery(QUERY_CHARACTERS, {
+    const { loading, error, data } = useQuery(QUERY_CHARACTERS, {
         variables:{
-            page: 17
+            page: xid
         }
     });
 
     if( error) {
-        return <div>hubo error</div>
+        return <Error/>
     }
 
     if(loading) {
         return( <Loading/>)
     }
+    console.log(data, '8889')
+    const { characters: { info: { next, prev} } } = data;
 
     let results  = data?.characters?.results;
-    console.log(results)
     return (
         <Layout>
-            <div className="sm:my-20">
-                <Pagination />
+            <div className="sm:my-10">
+                <Pagination current={ xid } prev={ prev } next={ next } setPage={ setId }/>
                 { results.map( ( charac, i ) => <CardChar key={i} character={charac}/> ) }
             </div>
         </Layout>

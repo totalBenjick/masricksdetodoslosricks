@@ -6,7 +6,6 @@ const Card = (props) => {
     const onClickRoute = () => {
         return router.push(props.route)
     }
-    console.log('prop.children', props.children)
     return (
         <div className="max-w-md mx-auto bg-white rounded-xl 
             shadow-md overflow-hidden md:max-w-2xl m-10 cursor-pointer
