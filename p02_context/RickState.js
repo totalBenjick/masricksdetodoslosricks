@@ -1,6 +1,6 @@
-import React, {useReducer} from 'react';
+import React, { useReducer } from 'react';
 import RickContext from './RickContext';
-import RickReducer from './RickReducer';
+import { RickReducer } from './RickReducer';
 
 const RickState = ({children}) => {
     const initialState = {

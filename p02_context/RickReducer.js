@@ -1,6 +1,6 @@
 
 
-export default ( state, action ) => {
+export const RickReducer = ( state, action ) => {
     switch(action.type) {
         case "setRick" :
             return {

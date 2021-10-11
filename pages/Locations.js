@@ -76,7 +76,7 @@ export default function Locations() {
                                 }}
                             >
                                 { data.locations?.results.map( ( loc, i ) => (
-                                    <Link  href={`/location/${loc.id || '0'}`} >
+                                    <Link  key={i} href={`/location/${loc.id || '0'}`} >
                                         <p style={{ color: "white" }}
                                             onClick={() => console.log('clickado')}
                                             key={i}
