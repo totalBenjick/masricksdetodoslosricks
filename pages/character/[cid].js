@@ -8,7 +8,7 @@ import Error from './../../p01_components/Error'
 
 
 
-export default function Character({props}) {
+export default function Character( props ) {
     const QUERY_ONE_CHAR = gql`
         query character($id: ID!){
 		    character(id: $id){
